@@ -1,0 +1,42 @@
+<form #hospitalForm="ngForm" (ngSubmit)="onSubmit(hospitalForm)">
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+  
+      <!-- First Dropdown for Hospital Names -->
+      <div class="box">
+        <label for="hospital">Hospital</label>
+        <select id="hospital" name="hospital" [(ngModel)]="selectedHospitalId" (change)="onHospitalsChange()">
+          <option value="" disabled selected>Select Hospital</option>
+          <option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">
+            {{ hospital.hospitalName }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Second Dropdown for Doctor Names -->
+      <div>
+        <label for="doctor">Doctor</label>
+        <select id="doctor" name="doctor" [(ngModel)]="selectedDoctorId" [disabled]="!doctors.length">
+          <option value="" disabled selected>Select Doctor</option>
+          <option *ngFor="let doctor of doctors" [value]="doctor.doctorId">
+            {{ doctor.doctorName }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Third Text Box -->
+      <div>
+        <label for="additionalInfo1">Additional Info 1</label>
+        <input type="text" id="additionalInfo1" name="additionalInfo1" [(ngModel)]="additionalInfo1" />
+      </div>
+  
+      <!-- Fourth Text Box -->
+      <div>
+        <label for="additionalInfo2">Additional Info 2</label>
+        <input type="text" id="additionalInfo2" name="additionalInfo2" [(ngModel)]="additionalInfo2" />
+      </div>
+    </div>
+  
+    <!-- Save Button -->
+    <button type="submit">Save</button>
+  </form>
+  

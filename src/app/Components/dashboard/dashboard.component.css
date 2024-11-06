@@ -1,0 +1,43 @@
+.table-container {
+    margin: 16px;
+  }
+  
+  .player-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .player-table th, .player-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .player-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-title {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  
+  .navbar-spacer {
+    flex: 1;
+  }
+  
+  mat-toolbar button {
+    color: white;
+    font-size: 1em;
+  }
+  
+  mat-toolbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

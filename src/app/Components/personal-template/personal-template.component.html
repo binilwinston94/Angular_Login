@@ -1,0 +1,121 @@
+<form>
+    <!-- Personal Details Section -->
+    <mat-card>
+        <h2>Personal Details</h2>
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="fill" fxFlex="45%">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="personalDetails.name" name="name" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" fxFlex="45%">
+                <mat-label>Nationality</mat-label>
+                <input matInput [(ngModel)]="personalDetails.nationality" name="nationality" required />
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="fill" fxFlex="45%">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [(ngModel)]="personalDetails.dateOfBirth" name="dateOfBirth" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" fxFlex="45%">
+                <mat-label>Passport No</mat-label>
+                <input matInput [(ngModel)]="personalDetails.passportNo" name="passportNo" required type="number" />
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="fill" fxFlex="45%">
+                <mat-label>Profession</mat-label>
+                <input matInput [(ngModel)]="personalDetails.profession" name="profession" required />
+            </mat-form-field>
+        </div>
+    </mat-card>
+
+    <!-- ID Details Accordion -->
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header class="custom-header">
+                <mat-panel-title> ID Details </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- New ID Details Form -->
+            <div class="id-details">
+                <div fxLayout="row" fxLayoutGap="16px">
+                    <mat-form-field appearance="fill" fxFlex="45%">
+                        <mat-label>ID Name</mat-label>
+                        <input matInput [(ngModel)]="newIdDetail.name" name="idName"  />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" fxFlex="45%">
+                        <mat-label>ID Number</mat-label>
+                        <input matInput [(ngModel)]="newIdDetail.idNo" name="idNo" type="number" />
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="16px">
+                    <mat-form-field appearance="fill" fxFlex="45%">
+                        <mat-label>Issue Place</mat-label>
+                        <input matInput [(ngModel)]="newIdDetail.issuePlace" name="issuePlace" />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" fxFlex="45%">
+                        <mat-label>Issue Date</mat-label>
+                        <input matInput [matDatepicker]="issueDatePicker" [(ngModel)]="newIdDetail.issueDate"
+                            name="issueDate" />
+                        <mat-datepicker-toggle matSuffix [for]="issueDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #issueDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="16px">
+                    <mat-form-field appearance="fill" fxFlex="45%">
+                        <mat-label>Expiry Date</mat-label>
+                        <input matInput [matDatepicker]="expiryDatePicker" [(ngModel)]="newIdDetail.expiryDate" name="expiryDate" />
+                        <mat-datepicker-toggle matSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #expiryDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 1cm;">
+                    <button mat-raised-button color="primary" (click)="addIdDetail()">Add ID Detail</button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- ID Details List (Grid) -->
+    <mat-card>
+        <h3>Added ID Details</h3>
+        <table mat-table [dataSource]="idDetailsList" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="idNo">
+                <th mat-header-cell *matHeaderCellDef> ID Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.idNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="issuePlace">
+                <th mat-header-cell *matHeaderCellDef> Issue Place </th>
+                <td mat-cell *matCellDef="let element"> {{element.issuePlace}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <button mat-icon-button color="warn" (click)="deleteIdDetail(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['name', 'idNo', 'issuePlace', 'actions']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['name', 'idNo', 'issuePlace', 'actions']; trackBy: trackById"></tr>
+        </table>
+    </mat-card>
+
+    <!-- Save Button -->
+    <div class="save-button-container">
+        <button mat-raised-button color="primary" type="button" (click)="saveForm()">Save</button>
+    </div>
+</form>

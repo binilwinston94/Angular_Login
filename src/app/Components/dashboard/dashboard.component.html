@@ -1,0 +1,39 @@
+
+<mat-toolbar color="primary" class="navbar">
+  <span class="navbar-title">Your App Title</span>
+  <span class="navbar-spacer"></span>
+  <button mat-button routerLink="#">Home</button>
+  <button mat-button routerLink="/personalTemplate">About</button>
+  <button mat-button routerLink="/doctors">Doctors</button>
+  <button mat-button routerLink="/angularmaterial">Contact</button>
+</mat-toolbar>
+
+<div class="table-container">
+    <table class="player-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+          <td>
+            {{player.id}}
+          </td>
+          <td>
+            {{player.name}}
+          </td>
+          <td>
+            {{player.location}}
+          </td>
+          <td>
+            {{player.email}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

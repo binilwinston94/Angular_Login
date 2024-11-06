@@ -1,0 +1,19 @@
+::ng-deep .custom-header {
+    background-color: pink;
+  }
+  
+  ::ng-deep .custom-header .mat-panel-title {
+    font-weight: bold;
+    color: black; /* Adjust the color if needed */
+  }
+  
+  .save-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1cm;
+  }
+
+  .id-details
+  {
+    margin-top: 1cm;
+  }

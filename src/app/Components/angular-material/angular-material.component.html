@@ -1,0 +1,58 @@
+<form #hospitalForm="ngForm" (ngSubmit)="onSubmit(hospitalForm)" class="form-container">
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center">
+
+        <!-- First Dropdown for Hospital Names -->
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Hospital</mat-label>
+            <mat-select [(ngModel)]="selectedHospitalId" name="hospital"  (selectionChange)="onHospitalChange()" required>
+                <mat-option value="" disabled>Select Hospital</mat-option>
+                <mat-option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">
+                    {{ hospital.hospitalName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hospitalForm.submitted && !selectedHospitalId">
+                Hospital is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Second Dropdown for Doctor Names -->
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Doctor</mat-label>
+            <mat-select [(ngModel)]="selectedDoctorId" name="doctor" [disabled]="!doctors.length" required >
+                <mat-option value="" disabled>Select Doctor</mat-option>
+                <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorId">
+                    {{ doctor.doctorName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hospitalForm.submitted && !selectedDoctorId">
+                Doctor is required.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center" style="margin-top: 1rem;">
+
+        <!-- Third Text Box -->
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Additional Info 1</mat-label>
+            <input matInput type="text" [(ngModel)]="email" name="email" required />
+            <mat-error *ngIf="hospitalForm.submitted && !email">
+                email is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Fourth Text Box -->
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Additional Info 2</mat-label>
+            <input matInput type="text" [(ngModel)]="additionalInfo" name="additionalInfo" required />
+            <mat-error *ngIf="hospitalForm.submitted && !additionalInfo">
+                Additional Info 2 is required.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <!-- Save Button -->
+    <div style="text-align: center; margin-top: 1.5rem;">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+    </div>
+</form>

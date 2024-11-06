@@ -1,0 +1,60 @@
+<form [formGroup]="hospitalForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center">
+  
+      <!-- First Dropdown for Hospital Names -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Hospital</mat-label>
+        <mat-select formControlName="hospital">
+          <mat-option value="" disabled>Select Hospital</mat-option>
+          <mat-option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">
+            {{ hospital.hospitalName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hospitalForm.get('hospital')?.invalid && hospitalForm.get('hospital')?.touched">
+          Hospital is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Second Dropdown for Doctor Names -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Doctor</mat-label>
+        <mat-select formControlName="doctor">
+          <mat-option value="" disabled>Select Doctor</mat-option>
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorId">
+            {{ doctor.doctorName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hospitalForm.get('doctor')?.invalid && hospitalForm.get('doctor')?.touched">
+          Doctor is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center" style="margin-top: 1rem;">
+  
+      <!-- Email Field with Pattern Validation -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="hospitalForm.get('email')?.invalid && hospitalForm.get('email')?.touched">
+          <span *ngIf="hospitalForm.get('email')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="hospitalForm.get('email')?.errors?.['pattern']">Please enter a valid email address.</span>
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Additional Info Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Additional Info 2</mat-label>
+        <input matInput type="text" formControlName="additionalInfo" />
+        <mat-error *ngIf="hospitalForm.get('additionalInfo')?.invalid && hospitalForm.get('additionalInfo')?.touched">
+          Additional Info 2 is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Save Button -->
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <button mat-raised-button color="primary" type="submit" [disabled]="hospitalForm.invalid">Save</button>
+    </div>
+  </form>
+  
